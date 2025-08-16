@@ -1,0 +1,7 @@
+{
+  "venvPath": "./pixel-art",
+  "venv": ".venv",
+  "pythonVersion": "3.11",
+  "pythonPlatform": "Darwin",
+  "extraPaths": ["./pixel-art"]
+}
