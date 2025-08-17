@@ -17,6 +17,7 @@ export function LoginForm({
   Icon: IconType;
   updateCurrentIcon: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const [spins, setSpins] = useState(false);
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <form>
@@ -28,27 +29,44 @@ export function LoginForm({
             >
               <button
                 className="flex size-8 items-center justify-center rounded-md "
-                onClick={() => updateCurrentIcon((prev) => (prev + 1) % 3)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  if (spins) return;
+                  setSpins(true);
+                  setTimeout(() => {
+                    updateCurrentIcon((prev) => (prev + 1) % 3);
+                    setSpins(false);
+                  }, 500);
+                }}
               >
-                <Icon className="size-10 hover:cursor-pointer text-rose-400" />
+                <Icon
+                  className={cn(
+                    "size-10 hover:cursor-pointer text-violet-400 transition-all duration-500 ease",
+                    spins
+                      ? "translate-y-4 opacity-0"
+                      : "translate-y-0 opacity-100",
+                  )}
+                />
               </button>
               <span className="sr-only">Acme Inc.</span>
             </a>
-            <h1 className="text-xl font-bold">Beinvenido a Morelandia.</h1>
+            <h1 className="text-xl font-bold">Bienvenido a Morelandia.</h1>
           </div>
           <div className="flex flex-col gap-6">
             <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Correo Electronico</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="m@example.com"
                 required
               />
+              <Label htmlFor="password">Contraseña</Label>
+              <Input id="password" type="password" required />
             </div>
             <Button
               type="submit"
-              className="w-full bg-rose-400 hover:bg-rose-500 transform-color duration-300"
+              className="w-full bg-violet-400 hover:bg-violet-500 transform-color duration-500"
             >
               Iniciar sesión
             </Button>
