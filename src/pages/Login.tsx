@@ -41,7 +41,7 @@ export function LoginForm({
               >
                 <Icon
                   className={cn(
-                    "size-10 hover:cursor-pointer text-violet-400 transition-all duration-500 ease",
+                    "size-10 hover:cursor-pointer text-violet-400 transition-all duration-500",
                     spins
                       ? "translate-y-4 opacity-0"
                       : "translate-y-0 opacity-100",
